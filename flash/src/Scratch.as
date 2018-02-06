@@ -260,9 +260,15 @@ public class Scratch extends Sprite {
 
 
 
-    public var colorCorrectionR:Number = 0.66;
-    public var colorCorrectionG:Number = 1;
-    public var colorCorrectionB:Number = 1;
+    public var colorCorrectionBrightR:Number = 1;
+    public var colorCorrectionBrightG:Number = 1;
+    public var colorCorrectionBrightB:Number = 1;
+
+
+    public var colorCorrectionColorR:Number = 0.5;
+    public var colorCorrectionColorG:Number = 1;
+    public var colorCorrectionColorB:Number = 1.5;
+
 
 
 
@@ -532,9 +538,9 @@ public class Scratch extends Sprite {
                     var color:uint = 0;
 
 
-                    robotSensors[i].raw[1] *= this.colorCorrectionR;
-                    robotSensors[i].raw[2] *= this.colorCorrectionG;
-                    robotSensors[i].raw[3] *= this.colorCorrectionB;
+                    robotSensors[i].raw[1] *= this.colorCorrectionBrightR;
+                    robotSensors[i].raw[2] *= this.colorCorrectionBrightG;
+                    robotSensors[i].raw[3] *= this.colorCorrectionBrightB;
 
 /*
                     color += (robotSensors[i].raw[1] * 2.5) << 16;
@@ -1753,9 +1759,9 @@ public class Scratch extends Sprite {
    public function setColorSensorCorrection(r:Number, g:Number, b:Number):void{
       trace("setColorSensorCorrection R=" + r + " G=" + g + " B=" + b);
 
-      this.colorCorrectionR = r;
-      this.colorCorrectionG = g;
-      this.colorCorrectionB = b;
+      this.colorCorrectionBrightR = r;
+      this.colorCorrectionBrightG = g;
+      this.colorCorrectionBrightB = b;
    }
 
 

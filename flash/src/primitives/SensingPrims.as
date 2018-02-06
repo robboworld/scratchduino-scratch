@@ -188,21 +188,15 @@ public class SensingPrims {
 
       switch(color){
          case "Red":{
-            if(app.robotSensors[sensorNumber].raw[1] > app.robotSensors[sensorNumber].raw[2]
-               && app.robotSensors[sensorNumber].raw[1] > app.robotSensors[sensorNumber].raw[3]) return true;
+            return app.robotSensors[sensorNumber].raw[1] > app.robotSensors[sensorNumber].raw[2] && app.robotSensors[sensorNumber].raw[1] > app.robotSensors[sensorNumber].raw[3];
          }
          case "Green":{
-            if(app.robotSensors[sensorNumber].raw[2] > app.robotSensors[sensorNumber].raw[1]
-               && app.robotSensors[sensorNumber].raw[2] > app.robotSensors[sensorNumber].raw[3]) return true;
+            return app.robotSensors[sensorNumber].raw[2] > app.robotSensors[sensorNumber].raw[1] && app.robotSensors[sensorNumber].raw[2] > app.robotSensors[sensorNumber].raw[3];
          }
          case "Blue":{
-            if(app.robotSensors[sensorNumber].raw[3] > app.robotSensors[sensorNumber].raw[1]
-               && app.robotSensors[sensorNumber].raw[3] > app.robotSensors[sensorNumber].raw[2]) return true;
+            return app.robotSensors[sensorNumber].raw[3] > app.robotSensors[sensorNumber].raw[1] && app.robotSensors[sensorNumber].raw[3] > app.robotSensors[sensorNumber].raw[2];
          }
-         default:{
-            return false;
-            break;
-         }
+         return false;
       }
 
 
