@@ -151,15 +151,20 @@ public class BlockColorSensorCorrector extends Sprite {
                 gBoxBright.setContents('' + Math.round(100 * g));
                 bBoxBright.setContents('' + Math.round(100 * b));
 
-
-                rBoxColor.setContents('' + Math.round(100 * rColor));
-                gBoxColor.setContents('' + Math.round(100 * gColor));
-                bBoxColor.setContents('' + Math.round(100 * bColor));
+                rBoxColor.setContents('' + Math.round(100 * 3 * rColor));
+                gBoxColor.setContents('' + Math.round(100 * 3 * gColor));
+                bBoxColor.setContents('' + Math.round(100 * 3 * bColor));
 
 
                 rSliderBright.update(r, 0.08);
                 gSliderBright.update(g, 0.08);
                 bSliderBright.update(b, 0.08);
+
+
+                rSliderColor.update(rColor, 0.08);
+                gSliderColor.update(gColor, 0.08);
+                bSliderColor.update(bColor, 0.08);
+
 
                 application.setColorSensorCorrection(r, g, b);
         }
@@ -180,18 +185,18 @@ public class BlockColorSensorCorrector extends Sprite {
                 update();
         }
         private function rTextChangedColor():void{
-                var n:Number = Number(rBoxBright.contents());
-                if (n == n) rColor = n / 100;
+                var n:Number = Number(rBoxColor.contents());
+                if (n == n) rColor = n / 300;
                 update();
         }
         private function gTextChangedColor():void{
-                var n:Number = Number(gBoxBright.contents());
-                if (n == n) gColor = n / 100;
+                var n:Number = Number(gBoxColor.contents());
+                if (n == n) gColor = n / 300;
                 update();
         }
         private function bTextChangedColor():void{
-                var n:Number = Number(bBoxBright.contents());
-                if (n == n) bColor = n / 100;
+                var n:Number = Number(bBoxColor.contents());
+                if (n == n) bColor = n / 300;
                 update();
         }
 
@@ -200,7 +205,11 @@ public class BlockColorSensorCorrector extends Sprite {
         private function setg(n:Number):void { g = n; update() }
         private function setb(n:Number):void { b = n; update() }
 
-        private function setColorR(n:Number):void { rColor = n; update() }
+        private function setColorR(n:Number):void{
+           rColor = n;
+           bColor = gColor = 1 - rColor;
+           update();
+        }
         private function setColorG(n:Number):void { gColor = n; update() }
         private function setColorB(n:Number):void { bColor = n; update() }
 

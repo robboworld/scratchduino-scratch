@@ -265,9 +265,9 @@ public class Scratch extends Sprite {
     public var colorCorrectionBrightB:Number = 1;
 
 
-    public var colorCorrectionColorR:Number = 0.5;
-    public var colorCorrectionColorG:Number = 1;
-    public var colorCorrectionColorB:Number = 1.5;
+    public var colorCorrectionColorR:Number = 0.3333333;
+    public var colorCorrectionColorG:Number = 0.6666666;
+    public var colorCorrectionColorB:Number = 1;
 
 
 
