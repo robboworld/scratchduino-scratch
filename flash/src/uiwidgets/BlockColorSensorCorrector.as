@@ -9,6 +9,7 @@ import flash.text.*;
 import flash.utils.ByteArray;
 
 import ui.parts.UIPart;
+import ui.parts.CheckBox;
 
 import util.*;
 
@@ -135,6 +136,12 @@ public class BlockColorSensorCorrector extends Sprite {
                 gSliderColor.x = gBoxColor.x + 20;
                 bSliderColor.x = bBoxColor.x + 20;
                 rSliderColor.y = gSliderColor.y = bSliderColor.y = rBoxColor.y + 30;
+
+
+                var cb:CheckBox = new CheckBox();
+                cb.x = 104;
+                cb.y = 67;
+                addChild(cb);
 
                 rColor = application.colorCorrectionColorR;
                 gColor = application.colorCorrectionColorG;
