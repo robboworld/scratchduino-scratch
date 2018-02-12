@@ -191,7 +191,7 @@ public class BlockColorSensorCorrector extends Sprite {
                 bSliderColor.update(bColor, 0.08);
 
 
-                application.setColorSensorCorrection(r, g, b);
+                application.setColorSensorCorrection(r, g, b, rColor, gColor, bColor);
         }
 
         private function rTextChangedBright():void{

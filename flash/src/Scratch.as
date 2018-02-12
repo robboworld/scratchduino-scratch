@@ -1763,12 +1763,18 @@ public class Scratch extends Sprite {
    }
 
 
-   public function setColorSensorCorrection(r:Number, g:Number, b:Number):void{
-      trace("setColorSensorCorrection R=" + r + " G=" + g + " B=" + b);
+   public function setColorSensorCorrection(r:Number, g:Number, b:Number,
+                                            rColor:Number, gColor:Number, bColor:Number):void{
+      trace("setColorSensorCorrection R=" + r + " G=" + g + " B=" + b + " R_COLOR=" + rColor + " B_COLOR=" + bColor + " G_COLOR=" + gColor);
 
       this.colorCorrectionBrightR = r;
       this.colorCorrectionBrightG = g;
       this.colorCorrectionBrightB = b;
+
+
+      this.colorCorrectionColorR = rColor;
+      this.colorCorrectionColorG = gColor;
+      this.colorCorrectionColorB = bColor;
    }
 
 
