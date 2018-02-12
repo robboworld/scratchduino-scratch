@@ -57,19 +57,102 @@ public class BlockColorSensorCorrector extends Sprite {
         private var cbLockB:CheckBox = new CheckBox();
 
 
+        private var arrColorSet:Array = [];
+
 
         private var application:Scratch;
 
         public function BlockColorSensorCorrector(application:Scratch){
                 this.application = application;
                 addChild(base = new Shape());
-                setWidthHeight(800, 500);
+                setWidthHeight(1000, 400);
 
 
 
 
                 addBrightCorrection();
                 addColorCorrection();
+
+
+                makeLabel('R',      15, 585, 20, true);
+                makeLabel('G',      15, 685, 20, true);
+                makeLabel('B',      15, 785, 20, true);
+                makeLabel('Bright', 15, 873, 20, true);
+
+
+                for(var f:int = 0; f < this.application.arrColorNames.length; f++){
+                   var tf:TextField = new TextField();
+                   tf.x = 500;
+                   tf.y = 50 + 40 * f;
+                   tf.text = this.application.arrColorNames[f] + ":";
+                   tf.defaultTextFormat = new TextFormat(CSS.font, 14, CSS.textColor, true);
+                   tf.autoSize = TextFieldAutoSize.LEFT;
+                   addChild(tf);
+
+                   tf = new TextField();
+                   tf.x = 570;
+                   tf.y = 50 + 40 * f;
+                   tf.selectable = true;
+                   tf.type = TextFieldType.INPUT;
+                   tf.text = this.application.arrColorRegion[this.application.arrColorNames[f]][0] + "-" + this.application.arrColorRegion[this.application.arrColorNames[f]][1]
+                   tf.defaultTextFormat = new TextFormat(CSS.font, 14, CSS.textColor, true);
+                   tf.border = true;
+                   tf.width = 60;
+                   tf.height = 20;
+                   addChild(tf);
+
+
+                   tf = new TextField();
+                   tf.x = 670;
+                   tf.y = 50 + 40 * f;
+                   tf.selectable = true;
+                   tf.type = TextFieldType.INPUT;
+                   tf.text = this.application.arrColorRegion[this.application.arrColorNames[f]][2] + "-" + this.application.arrColorRegion[this.application.arrColorNames[f]][3]
+                   tf.defaultTextFormat = new TextFormat(CSS.font, 14, CSS.textColor, true);
+                   tf.border = true;
+                   tf.width = 60;
+                   tf.height = 20;
+                   addChild(tf);
+
+
+                   tf = new TextField();
+                   tf.x = 770;
+                   tf.y = 50 + 40 * f;
+                   tf.selectable = true;
+                   tf.type = TextFieldType.INPUT;
+                   tf.text = this.application.arrColorRegion[this.application.arrColorNames[f]][4] + "-" + this.application.arrColorRegion[this.application.arrColorNames[f]][5]
+                   tf.defaultTextFormat = new TextFormat(CSS.font, 14, CSS.textColor, true);
+                   tf.border = true;
+                   tf.width = 60;
+                   tf.height = 20;
+                   addChild(tf);
+
+
+                   tf = new TextField();
+                   tf.x = 870;
+                   tf.y = 50 + 40 * f;
+                   tf.selectable = true;
+                   tf.type = TextFieldType.INPUT;
+                   tf.text = this.application.arrColorRegion[this.application.arrColorNames[f]][6] + "-" + this.application.arrColorRegion[this.application.arrColorNames[f]][7]
+                   tf.defaultTextFormat = new TextFormat(CSS.font, 14, CSS.textColor, true);
+                   tf.border = true;
+                   tf.width = 60;
+                   tf.height = 20;
+                   addChild(tf);
+                }
+
+
+/*
+                   var tf:TextField = new TextField();
+                   tf.x = 500;
+                   tf.y = 100;
+                   tf.text = 'dfgdfgdg';
+                   tf.defaultTextFormat = new TextFormat(CSS.font, 10, CSS.textColor, true);
+                   tf.autoSize = TextFieldAutoSize.LEFT;
+                   addChild(tf);
+*/
+
+
                 update();
         }
 

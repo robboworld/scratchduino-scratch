@@ -271,6 +271,7 @@ public class Scratch extends Sprite {
 
 
 
+    public var arrColorNames:Array  = [];
     public var arrColorRegion:Array = [];
 
 
@@ -288,6 +289,8 @@ public class Scratch extends Sprite {
 
 
    public function Scratch() {
+      this.arrColorNames = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet', 'Black', 'White'];
+
       this.arrColorRegion['Red']    = [100,999,  0,10,       0,10 ,   0,999  ];
       this.arrColorRegion['Orange'] = [  0,0,    0,10,       0,0  ,   0,999  ];
       this.arrColorRegion['Yellow'] = [  0,0,    0,0,        0,0  ,   0,999  ];
