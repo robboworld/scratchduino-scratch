@@ -271,6 +271,11 @@ public class Scratch extends Sprite {
 
 
 
+    public var arrColorRegion:Array = [];
+
+
+
+
 
 
     /* Default directory for projects */
@@ -283,6 +288,17 @@ public class Scratch extends Sprite {
 
 
    public function Scratch() {
+      this.arrColorRegion['Red']    = [100,999,  0,10,       0,10 ,   0,999  ];
+      this.arrColorRegion['Orange'] = [  0,0,    0,10,       0,0  ,   0,999  ];
+      this.arrColorRegion['Yellow'] = [  0,0,    0,0,        0,0  ,   0,999  ];
+      this.arrColorRegion['Green']  = [  0,10,   100,999,    0,0  ,   0,999  ];
+      this.arrColorRegion['Blue']   = [  0,10,   0,10,     100,999,   0,999  ];
+      this.arrColorRegion['Indigo'] = [  0,0,    0,0,        0,0  ,   0,999  ];
+      this.arrColorRegion['Violet'] = [  0,0,    0,0,        0,0  ,   0,999  ];
+      this.arrColorRegion['Black'] =  [  0,999,  0,999,      0,999,   0,10   ];
+      this.arrColorRegion['White'] =  [  0,999,  0,999,      0,999,   200,999];
+
+
       this.lang = new StringTools(LocaleID.DEFAULT).actualLocaleIDName.split("-")[0];
       trace("User Lang=" + this.lang);
 
