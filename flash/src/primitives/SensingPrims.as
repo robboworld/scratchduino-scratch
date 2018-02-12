@@ -180,12 +180,21 @@ public class SensingPrims {
 */
 
 
+      var arrCorrectionArray:Array = app.arrColorRegion[color];
+      var iTotalBright:int = app.robotSensors[sensorNumber].raw[1] + app.robotSensors[sensorNumber].raw[2] + app.robotSensors[sensorNumber].raw[3];
+      if(   app.robotSensors[sensorNumber].raw[1] >= arrCorrectionArray[0]
+         && app.robotSensors[sensorNumber].raw[1] <= arrCorrectionArray[1]
+         && app.robotSensors[sensorNumber].raw[2] >= arrCorrectionArray[2]
+         && app.robotSensors[sensorNumber].raw[2] <= arrCorrectionArray[3]
+         && app.robotSensors[sensorNumber].raw[3] >= arrCorrectionArray[4]
+         && app.robotSensors[sensorNumber].raw[3] <= arrCorrectionArray[5]
+         && iTotalBright >= arrCorrectionArray[6]
+         && iTotalBright <= arrCorrectionArray[7]
+        ){
+         return true;
+      }
 
-
-
-
-
-
+/*
       switch(color){
          case "Red":{
             return app.robotSensors[sensorNumber].raw[1] > app.robotSensors[sensorNumber].raw[2] && app.robotSensors[sensorNumber].raw[1] > app.robotSensors[sensorNumber].raw[3];
@@ -198,7 +207,7 @@ public class SensingPrims {
          }
          return false;
       }
-
+*/
 
 
 

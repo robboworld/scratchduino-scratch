@@ -105,6 +105,9 @@ public class BlockColorSensorCorrector extends Sprite {
                       tf.width = 60;
                       tf.height = 20;
                       arrColorListFields[this.application.arrColorNames[f]][i] = tf;
+                      tf.addEventListener(Event.CHANGE, function(e:Event):void{
+                         update()
+                      });
                       addChild(tf);
                    }
                 }
