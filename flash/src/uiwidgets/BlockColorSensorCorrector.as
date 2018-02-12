@@ -52,6 +52,12 @@ public class BlockColorSensorCorrector extends Sprite {
         private var bColor:Number;
 
 
+        private var cbLockR:CheckBox = new CheckBox();
+        private var cbLockG:CheckBox = new CheckBox();
+        private var cbLockB:CheckBox = new CheckBox();
+
+
+
         private var application:Scratch;
 
         public function BlockColorSensorCorrector(application:Scratch){
@@ -127,10 +133,16 @@ public class BlockColorSensorCorrector extends Sprite {
                 gBoxColor.setWidth(50);
                 bBoxColor.setWidth(50);
 
-                rBoxColor.x = 282;
-                gBoxColor.x = 357;
-                bBoxColor.x = 432;
+                rBoxColor.x = 284;
+                gBoxColor.x = 359;
+                bBoxColor.x = 434;
                 rBoxColor.y = gBoxColor.y = bBoxColor.y = 25;
+
+//              Let's set them all to RO as the simpliest sync way
+                rBoxColor.setEditable(false);
+                gBoxColor.setEditable(false);
+                bBoxColor.setEditable(false);
+
 
                 rSliderColor.x = rBoxColor.x + 20;
                 gSliderColor.x = gBoxColor.x + 20;
@@ -138,10 +150,16 @@ public class BlockColorSensorCorrector extends Sprite {
                 rSliderColor.y = gSliderColor.y = bSliderColor.y = rBoxColor.y + 30;
 
 
-                var cb:CheckBox = new CheckBox();
-                cb.x = 104;
-                cb.y = 67;
-                addChild(cb);
+                cbLockR.x = 301;
+                cbLockG.x = 376;
+                cbLockB.x = 451;
+                cbLockR.y = cbLockG.y = cbLockB.y = 360;
+                cbLockR.addListener(lockListenerR);
+                cbLockG.addListener(lockListenerG);
+                cbLockB.addListener(lockListenerB);
+                addChild(cbLockR);
+                addChild(cbLockG);
+                addChild(cbLockB);
 
                 rColor = application.colorCorrectionColorR;
                 gColor = application.colorCorrectionColorG;
@@ -213,12 +231,68 @@ public class BlockColorSensorCorrector extends Sprite {
         private function setb(n:Number):void { b = n; update() }
 
         private function setColorR(n:Number):void{
-           rColor = n;
-           bColor = gColor = 1 - rColor;
-           update();
+           if(cbLockG.state && cbLockB.state){
+              //Other locked, we can noting to do
+           }
+           else{
+              rColor = n;
+
+              if(!cbLockG.state && !cbLockB.state){
+                 bColor = gColor = (1 - rColor) / 2;
+              }
+              else if(cbLockG.state){
+                 //Green locked
+                 bColor = 1 - rColor - gColor;
+              }
+              else if(cbLockB.state){
+                 //Blue locked
+                 gColor = 1 - rColor - bColor;
+              }
+
+              update();
+           }
         }
-        private function setColorG(n:Number):void { gColor = n; update() }
-        private function setColorB(n:Number):void { bColor = n; update() }
+        private function setColorG(n:Number):void{
+           gColor = n;
+           update()
+        }
+        private function setColorB(n:Number):void{
+           bColor = n;
+           update()
+        }
+
+
+
+        private function lockListenerR():void{
+           if(cbLockR.state){
+              rSliderColor.allowDragging(false);
+              rBoxColor.setEditable(false);
+           }
+           else{
+              rSliderColor.allowDragging(true);
+              rBoxColor.setEditable(true);
+           }
+        }
+        private function lockListenerG():void{
+           if(cbLockG.state){
+              gSliderColor.allowDragging(false);
+              gBoxColor.setEditable(false);
+           }
+           else{
+              gSliderColor.allowDragging(true);
+              gBoxColor.setEditable(true);
+           }
+        }
+        private function lockListenerB():void{
+           if(cbLockR.state){
+              bSliderColor.allowDragging(false);
+              bBoxColor.setEditable(false);
+           }
+           else{
+              bSliderColor.allowDragging(true);
+              bBoxColor.setEditable(true);
+           }
+        }
 
 
         private function makeLabel(s:String, fontSize:int, x:int = 0, y:int = 0, bold:Boolean = false):TextField {
