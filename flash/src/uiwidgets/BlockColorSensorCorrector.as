@@ -133,9 +133,9 @@ public class BlockColorSensorCorrector extends Sprite {
                 gBoxColor.setWidth(50);
                 bBoxColor.setWidth(50);
 
-                rBoxColor.x = 284;
-                gBoxColor.x = 359;
-                bBoxColor.x = 434;
+                rBoxColor.x = 282;
+                gBoxColor.x = 357;
+                bBoxColor.x = 432;
                 rBoxColor.y = gBoxColor.y = bBoxColor.y = 25;
 
 //              Let's set them all to RO as the simpliest sync way
@@ -233,6 +233,8 @@ public class BlockColorSensorCorrector extends Sprite {
         private function setColorR(n:Number):void{
            if(cbLockG.state && cbLockB.state){
               //Other locked, we can noting to do
+
+              rColor = 1 - gColor - bColor;
            }
            else{
               rColor = n;
@@ -243,22 +245,90 @@ public class BlockColorSensorCorrector extends Sprite {
               else if(cbLockG.state){
                  //Green locked
                  bColor = 1 - rColor - gColor;
+
+                 if(bColor < 0){
+                    bColor = 0;
+                    rColor = 1 - gColor;
+                 }
               }
               else if(cbLockB.state){
                  //Blue locked
                  gColor = 1 - rColor - bColor;
-              }
 
-              update();
+                 if(gColor < 0){
+                    gColor = 0;
+                    rColor = 1 - bColor;
+                 }
+              }
            }
+
+           update();
         }
         private function setColorG(n:Number):void{
-           gColor = n;
-           update()
+           if(cbLockR.state && cbLockB.state){
+              //Other locked, we can noting to do
+              gColor = 1 - rColor - bColor;
+           }
+           else{
+              gColor = n;
+
+              if(!cbLockR.state && !cbLockB.state){
+                 rColor = bColor = (1 - gColor) / 2;
+              }
+              else if(cbLockR.state){
+                 //Red locked
+                 bColor = 1 - gColor - rColor;
+
+                 if(bColor < 0){
+                    bColor = 0;
+                    gColor = 1 - rColor;
+                 }
+              }
+              else if(cbLockB.state){
+                 //Blue locked
+                 rColor = 1 - gColor - bColor;
+
+                 if(rColor < 0){
+                    rColor = 0;
+                    gColor = 1 - bColor;
+                 }
+              }
+           }
+
+           update();
         }
         private function setColorB(n:Number):void{
-           bColor = n;
-           update()
+           if(cbLockR.state && cbLockG.state){
+              //Other locked, we can noting to do
+              bColor = 1 - rColor - gColor;
+           }
+           else{
+              bColor = n;
+
+              if(!cbLockR.state && !cbLockG.state){
+                 rColor =gColor = (1 - bColor) / 2;
+              }
+              else if(cbLockR.state){
+                 //Red locked
+                 gColor = 1 - rColor - bColor;
+
+                 if(gColor < 0){
+                    gColor = 0;
+                    bColor = 1 - rColor;
+                 }
+              }
+              else if(cbLockG.state){
+                 //Green locked
+                 rColor = 1 - gColor - bColor;
+
+                 if(rColor < 0){
+                    rColor = 0;
+                    bColor = 1 - gColor;
+                 }
+              }
+           }
+
+           update();
         }
 
 
@@ -270,7 +340,7 @@ public class BlockColorSensorCorrector extends Sprite {
            }
            else{
               rSliderColor.allowDragging(true);
-              rBoxColor.setEditable(true);
+//              rBoxColor.setEditable(true);
            }
         }
         private function lockListenerG():void{
@@ -280,7 +350,7 @@ public class BlockColorSensorCorrector extends Sprite {
            }
            else{
               gSliderColor.allowDragging(true);
-              gBoxColor.setEditable(true);
+//              gBoxColor.setEditable(true);
            }
         }
         private function lockListenerB():void{
@@ -290,7 +360,7 @@ public class BlockColorSensorCorrector extends Sprite {
            }
            else{
               bSliderColor.allowDragging(true);
-              bBoxColor.setEditable(true);
+//              bBoxColor.setEditable(true);
            }
         }
 
