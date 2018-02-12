@@ -57,7 +57,7 @@ public class BlockColorSensorCorrector extends Sprite {
         private var cbLockB:CheckBox = new CheckBox();
 
 
-        private var arrColorSet:Array = [];
+        private var arrColorListFields:Array = [];
 
 
         private var application:Scratch;
@@ -89,69 +89,25 @@ public class BlockColorSensorCorrector extends Sprite {
                    tf.autoSize = TextFieldAutoSize.LEFT;
                    addChild(tf);
 
-                   tf = new TextField();
-                   tf.x = 570;
-                   tf.y = 50 + 40 * f;
-                   tf.selectable = true;
-                   tf.type = TextFieldType.INPUT;
-                   tf.text = this.application.arrColorRegion[this.application.arrColorNames[f]][0] + "-" + this.application.arrColorRegion[this.application.arrColorNames[f]][1]
-                   tf.defaultTextFormat = new TextFormat(CSS.font, 14, CSS.textColor, true);
-                   tf.border = true;
-                   tf.width = 60;
-                   tf.height = 20;
-                   addChild(tf);
+
+                   arrColorListFields[this.application.arrColorNames[f]] = [];
 
 
-                   tf = new TextField();
-                   tf.x = 670;
-                   tf.y = 50 + 40 * f;
-                   tf.selectable = true;
-                   tf.type = TextFieldType.INPUT;
-                   tf.text = this.application.arrColorRegion[this.application.arrColorNames[f]][2] + "-" + this.application.arrColorRegion[this.application.arrColorNames[f]][3]
-                   tf.defaultTextFormat = new TextFormat(CSS.font, 14, CSS.textColor, true);
-                   tf.border = true;
-                   tf.width = 60;
-                   tf.height = 20;
-                   addChild(tf);
-
-
-                   tf = new TextField();
-                   tf.x = 770;
-                   tf.y = 50 + 40 * f;
-                   tf.selectable = true;
-                   tf.type = TextFieldType.INPUT;
-                   tf.text = this.application.arrColorRegion[this.application.arrColorNames[f]][4] + "-" + this.application.arrColorRegion[this.application.arrColorNames[f]][5]
-                   tf.defaultTextFormat = new TextFormat(CSS.font, 14, CSS.textColor, true);
-                   tf.border = true;
-                   tf.width = 60;
-                   tf.height = 20;
-                   addChild(tf);
-
-
-                   tf = new TextField();
-                   tf.x = 870;
-                   tf.y = 50 + 40 * f;
-                   tf.selectable = true;
-                   tf.type = TextFieldType.INPUT;
-                   tf.text = this.application.arrColorRegion[this.application.arrColorNames[f]][6] + "-" + this.application.arrColorRegion[this.application.arrColorNames[f]][7]
-                   tf.defaultTextFormat = new TextFormat(CSS.font, 14, CSS.textColor, true);
-                   tf.border = true;
-                   tf.width = 60;
-                   tf.height = 20;
-                   addChild(tf);
+                   for(var i:int = 0; i < 4; i++){
+                      tf = new TextField();
+                      tf.x = 570 + i * 100;
+                      tf.y = 50 + 40 * f;
+                      tf.selectable = true;
+                      tf.type = TextFieldType.INPUT;
+                      tf.text = this.application.arrColorRegion[this.application.arrColorNames[f]][i*2] + "-" + this.application.arrColorRegion[this.application.arrColorNames[f]][i*2+1]
+                      tf.defaultTextFormat = new TextFormat(CSS.font, 14, CSS.textColor, true);
+                      tf.border = true;
+                      tf.width = 60;
+                      tf.height = 20;
+                      arrColorListFields[this.application.arrColorNames[f]][i] = tf;
+                      addChild(tf);
+                   }
                 }
-
-
-/*
-                   var tf:TextField = new TextField();
-                   tf.x = 500;
-                   tf.y = 100;
-                   tf.text = 'dfgdfgdg';
-                   tf.defaultTextFormat = new TextFormat(CSS.font, 10, CSS.textColor, true);
-                   tf.autoSize = TextFieldAutoSize.LEFT;
-                   addChild(tf);
-*/
-
 
                 update();
         }
@@ -275,6 +231,17 @@ public class BlockColorSensorCorrector extends Sprite {
 
 
                 application.setColorSensorCorrection(r, g, b, rColor, gColor, bColor);
+
+
+
+                for(var f:int = 0; f < this.application.arrColorNames.length; f++){
+                   for(var i:int = 0; i < 4; i++){
+                      var arrstrValue:Array = arrColorListFields[this.application.arrColorNames[f]][i].text.split("-");
+                      application.arrColorRegion[application.arrColorNames[f]][i*2]   = int(arrstrValue[0]);
+                      application.arrColorRegion[application.arrColorNames[f]][i*2+1] = int(arrstrValue[1]);
+                   }
+                }
+
         }
 
         private function rTextChangedBright():void{
