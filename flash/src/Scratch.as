@@ -542,6 +542,13 @@ public class Scratch extends Sprite {
                     robotSensors[i].raw[2] *= this.colorCorrectionBrightG;
                     robotSensors[i].raw[3] *= this.colorCorrectionBrightB;
 
+
+                    var iTotalBright:int = robotSensors[i].raw[1] + robotSensors[i].raw[2] + robotSensors[i].raw[3];
+                    robotSensors[i].raw[1] = robotSensors[i].raw[1] * this.colorCorrectionColorR * 3;
+                    robotSensors[i].raw[2] = robotSensors[i].raw[2] * this.colorCorrectionColorG * 3;
+                    robotSensors[i].raw[3] = robotSensors[i].raw[3] * this.colorCorrectionColorB * 3;
+
+
 /*
                     color += (robotSensors[i].raw[1] * 2.5) << 16;
                     color += (robotSensors[i].raw[2] * 2.5) << 8;
